@@ -78,23 +78,4 @@ P.objAll = function(obj) {
 		// return mergeObj(arrOfResolves, newObj.keys);
 	});
 }
-
-var promise1 = P.resolve((function() {
-	// setTimeout(function(timeoutId) {
-	console.log('TimeOut Fired #1')
-	return "I am a user";
-})());
-
-
-var promise2 = P.resolve((function() {
-	console.log('TimeOut Fired #2')
-	return "I am a prod";
-})());
-
-
-P.objAll({user: promise1, product: promise2})
-.then(function(element) {
-	console.log(element);
-});
-
 //synchronous promises essentially
