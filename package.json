@@ -1,0 +1,14 @@
+{
+  "name": "cross-my-heart",
+  "version": "1.0.0",
+  "description": "a promise utility library",
+  "main": "promiseRemember.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Justin Barabander",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^2.10.0"
+  }
+}
