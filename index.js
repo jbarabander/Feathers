@@ -65,6 +65,17 @@ P.chain = function() {
 		//return arr;
 	//}} //element must always come first
 }//finish later  more general version of remember for anything like that.
-P.mapObj = function(obj) {
-	
+// P.mapObj = function(obj) {
+
+// }
+P.objAll = function(obj) {
+	var newObj = utils.splitObj(obj);
+	return Promise.all(newObj.values)
+	.then(function(arrOfResolves) {
+		console.log(arrOfResolves);
+		return utils.mergeObj(newObj.keys, arrOfResolves);
+		// console.log(mergedObj);
+		// return mergeObj(arrOfResolves, newObj.keys);
+	});
 }
+//synchronous promises essentially
