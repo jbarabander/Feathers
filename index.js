@@ -65,6 +65,36 @@ P.chain = function() {
 		//return arr;
 	//}} //element must always come first
 }//finish later  more general version of remember for anything like that.
-P.mapObj = function(obj) {
-	
+// P.mapObj = function(obj) {
+
+// }
+P.objAll = function(obj) {
+	var newObj = utils.splitObj(obj);
+	return Promise.all(newObj.values)
+	.then(function(arrOfResolves) {
+		console.log(arrOfResolves);
+		return utils.mergeObj(newObj.keys, arrOfResolves);
+		// console.log(mergedObj);
+		// return mergeObj(arrOfResolves, newObj.keys);
+	});
 }
+
+var promise1 = P.resolve((function() {
+	// setTimeout(function(timeoutId) {
+	console.log('TimeOut Fired #1')
+	return "I am a user";
+})());
+
+
+var promise2 = P.resolve((function() {
+	console.log('TimeOut Fired #2')
+	return "I am a prod";
+})());
+
+
+P.objAll({user: promise1, product: promise2})
+.then(function(element) {
+	console.log(element);
+});
+
+//synchronous promises essentially
