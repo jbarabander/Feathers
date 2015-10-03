@@ -2,37 +2,7 @@
 
 var P = require('bluebird');
 var utils = require('./utilities');
-
-
-//alternative definition - better definition: 
-// var remember = function() {
-// 	var arr = [];
-// 	var accumFunc;
-// 	var args = Array.prototype.slice.call(arguments);
-// 	var lastArg = args[args.length - 1];
-// 	var lastArgType = typeof args[args.length - 1];
-// 	if(Array.isArray(lastArg)) {
-// 		accumFunc = P.resolve(args[0](...lastArg));
-// 		args.splice(args.length - 1, 1);
-// 	}
-// 	else if(lastArgType === 'function') accumFunc = P.resolve(args[0]());
-// 	else throw new TypeError(`Expected a function or array.  got - ${lastArgType}`);
-
-// 	accumFunc = accumFunc.then(value => valueAccum(value, arr));
-// 	for(let i = 1; i < args.length; i++) {
-// 		accumFunc = accumFunc.then(args[i]).then(value => valueAccum(value, arr));
-// 	}
-// 	return accumFunc.then(args[args.length]);
-// }
-
-// remember(
-// 	function(element) {
-// 	return element + 1;
-// }, function(element) {
-// 	return element[0] + 1;
-// }, function(element) {
-// 	console.log(element[1]);
-// }, [4]);
+var event = require('event');
 
 P.remember = function() {
 	var arr = [];
@@ -65,17 +35,32 @@ P.chain = function() {
 		//return arr;
 	//}} //element must always come first
 }//finish later  more general version of remember for anything like that.
-// P.mapObj = function(obj) {
-
-// }
+//simplifying promise factories
 P.objAll = function(obj) {
 	var newObj = utils.splitObj(obj);
-	return Promise.all(newObj.values)
+	return P.all(newObj.values)
 	.then(function(arrOfResolves) {
-		console.log(arrOfResolves);
 		return utils.mergeObj(newObj.keys, arrOfResolves);
-		// console.log(mergedObj);
-		// return mergeObj(arrOfResolves, newObj.keys);
-	});
+	}, function(err) {
+		return err;
+	})
+};
+
+P.
+
+P.order = function() {
+	
+};
+
+P.mapObj = function(obj, cb) {
+	var newObj = utils.splitObj(obj);
+	return Promise.map(newObj.values, cb)
+	.then(function(arr) {
+		return utils.mergeObj(newObj.keys, arr);
+	})
 }
+
+// P.sync = function(obj, cb) {
+
+// }
 //synchronous promises essentially
