@@ -46,11 +46,9 @@ P.objAll = function(obj) {
 	})
 };
 
-P.
-
-P.order = function() {
+// P.order = function() {
 	
-};
+// };
 
 P.mapObj = function(obj, cb) {
 	var newObj = utils.splitObj(obj);
@@ -59,6 +57,9 @@ P.mapObj = function(obj, cb) {
 		return utils.mergeObj(newObj.keys, arr);
 	})
 }
+
+// P.latch = function()
+
 
 // P.sync = function(obj, cb) {
 
