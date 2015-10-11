@@ -50,6 +50,10 @@ P.objAll = function(obj) {
 	
 // };
 
+// P.curry = function() {
+
+// }
+
 P.mapObj = function(obj, cb) {
 	var newObj = utils.splitObj(obj);
 	return Promise.map(newObj.values, cb)
@@ -57,6 +61,24 @@ P.mapObj = function(obj, cb) {
 		return utils.mergeObj(newObj.keys, arr);
 	})
 }
+
+
+P.syncAll = function(arr) {
+	var internalArr = [];
+	chainedPromise = P.resolve(arr[0]);
+	for(var i = 1; i < arr.length; i++) {
+		chainedPromise.then(element => {internalArr.push(element)}).then(() => {return P.resolve(arr[i])})
+	}
+	return (
+		chainedPromise
+		.then(element => {
+			internalArr.push(element);
+			return internalArr;
+		})
+	)
+	
+}
+
 
 // P.latch = function()
 
