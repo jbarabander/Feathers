@@ -1,10 +1,8 @@
 'use strict'
-
 var utils = require('./utilities');
-var event = require('event');
 
 module.exports = function(P) {
-	P.prototype.remember = function() {
+	P.remember = function() {
 		var arr = [];
 		var accumFunc;
 		var args = Array.prototype.slice.call(arguments);
@@ -22,7 +20,7 @@ module.exports = function(P) {
 			accumFunc = accumFunc.then(args[i]).then(value => utils.valueAccum(value, arr));
 		}
 		return accumFunc.then(args[args.length]);
-	}
+	};
 
 	//finish later  more general version of remember for anything like that.
 	//simplifying promise factories
@@ -44,7 +42,7 @@ module.exports = function(P) {
 
 	// }
 
-	P.prototype.mapObj = function(obj, cb) {
+	P.mapObj = function(obj, cb) {
 		var newObj = utils.splitObj(obj);
 		return Promise.map(newObj.values, cb)
 		.then(function(arr) {
@@ -53,9 +51,9 @@ module.exports = function(P) {
 	}
 
 
-	P.prototype.syncAll = function(arr) {
+	P.syncAll = function(arr) {
 		var internalArr = [];
-		chainedPromise = P.resolve(arr[0]);
+		var chainedPromise = P.resolve(arr[0]);
 		for(var i = 1; i < arr.length; i++) {
 			chainedPromise.then(element => {internalArr.push(element)}).then(() => P.resolve(arr[i]))
 		}
@@ -66,20 +64,7 @@ module.exports = function(P) {
 				return internalArr;
 			})
 		)
-	}
-
-
-
-
-	P.prototype.after = function() {
-
-	}
-
-	P.prototype.latch = function() {
-		
-	}
-
-
+	};
 
 	// P.latch = function()
 
