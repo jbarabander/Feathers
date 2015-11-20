@@ -1,14 +1,11 @@
 {
-  "name": "cross-my-heart",
+  "name": "bluebird_feathers",
   "version": "1.0.0",
   "description": "a promise utility library",
-  "main": "promiseRemember.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Justin Barabander",
-  "license": "ISC",
-  "dependencies": {
-    "bluebird": "^2.10.0"
-  }
+  "license": "ISC"
 }
