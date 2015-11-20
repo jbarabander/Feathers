@@ -1,6 +1,6 @@
 {
   "name": "bluebird_feathers",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "a promise utility library",
   "main": "index.js",
   "scripts": {
