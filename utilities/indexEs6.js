@@ -1,21 +1,19 @@
-'use strict';
+'use strict'
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
-
-var valueAccum = function valueAccum(value, array) {
+var valueAccum = (value, array) => {
     array.push(value);
     return array;
 };
 
-var splitObj = function splitObj(obj) {
+var splitObj = (obj) => {
     var keys = Object.keys(obj);
     var values = keys.map(function (key) {
         return obj[key];
     });
-    return { keys: keys, values: values };
-};
+    return {keys: keys, values: values};
+}
 
-var mergeObj = function mergeObj(obj) {
+var mergeObj = function (obj) {
     var keys;
     var values;
     if (arguments.length === 1) {
@@ -29,32 +27,33 @@ var mergeObj = function mergeObj(obj) {
         previous[current] = values[index];
         return previous;
     }, {});
-};
+}
 
 //recursive version
-var flattenArrRec = function flattenArrRec(arr) {
+var flattenArrRec = function (arr) {
     var newArr = [];
     for (var i = 0; i < arr.length; i++) {
-        if (Array.isArray(arr[i])) newArr = newArr.concat(flattenArr(arr[i]));else newArr.push(arr[i]);
+        if (Array.isArray(arr[i])) newArr = newArr.concat(flattenArr(arr[i]));
+        else newArr.push(arr[i]);
     }
     return newArr;
-};
+}
 
 //iterative version
-var flattenArrIter = function flattenArrIter(arr) {
+var flattenArrIter = function (arr) {
     var newArr = arr.slice();
     for (var i = 0; i < newArr.length; i++) {
         while (Array.isArray(newArr[i])) {
-            newArr.splice.apply(newArr, [i, 1].concat(_toConsumableArray(newArr[i])));
+            newArr.splice(i, 1, ...newArr[i]);
         }
     }
     return newArr;
-};
+}
+
 
 module.exports = {
     valueAccum: valueAccum,
     splitObj: splitObj,
     mergeObj: mergeObj,
     flattenArr: flattenArrIter
-};
-
+}
