@@ -67,11 +67,8 @@ module.exports = function(P) {
 	};
 
 	// P.latch = function()
-
-
-	// P.sync = function(obj, cb) {
-
-	// }
-	//synchronous promises essentially	
+	P.flatten = arr => {
+		return Promise.all(utils.flattenArr(arr));
+	}
 }
 

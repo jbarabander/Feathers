@@ -71,5 +71,8 @@ module.exports = function (P) {
 	};
 
 	// P.latch = function()
+	P.flatten = function (arr) {
+		return Promise.all(utils.flattenArr(arr));
+	};
 };
 
