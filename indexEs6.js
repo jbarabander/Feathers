@@ -19,7 +19,8 @@ module.exports = function(P) {
 		for(let i = 1; i < args.length; i++) {
 			accumFunc = accumFunc.then(args[i]).then(value => utils.valueAccum(value, arr));
 		}
-		return accumFunc.then(args[args.length]);
+		//return accumFunc.then(args[args.length]);
+		return accumFunc;
 	};
 
 	//finish later  more general version of remember for anything like that.
