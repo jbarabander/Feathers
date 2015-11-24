@@ -24,7 +24,7 @@ module.exports = function (P) {
 				return utils.valueAccum(value, arr);
 			});
 		}
-		return accumFunc.then(args[args.length]);
+		return accumFunc;
 	};
 
 	//finish later  more general version of remember for anything like that.
